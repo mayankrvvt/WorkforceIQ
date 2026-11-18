@@ -31,3 +31,23 @@ The client runs at `http://localhost:5174`; the API runs at
 - `npm test` - run server tests
 - `npm run seed:skills` - add starter skills to MongoDB
 - `npm run lint` - lint both workspaces
+
+## Deployment
+
+The client is configured for Netlify (`netlify.toml`); the Express API is
+configured as a Render web service (`render.yaml`). Create the Netlify site
+from this GitHub repository and configure these build environment variables:
+
+- `VITE_API_URL` - Render API URL ending in `/api`
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+
+Create the Render service from the repository Blueprint. Set the prompted
+environment values in Render, including the MongoDB URI, Gemini API key,
+Firebase Admin credentials, and `CLIENT_URL` using the Netlify site origin.
+Then add the Netlify site's hostname to Firebase Authentication's authorized
+domains. Do not commit `.env` or paste secret values into source files.

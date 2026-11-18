@@ -13,6 +13,9 @@ import employerRoutes from './routes/employer.routes.js';
 import matchingRoutes from './routes/matching.routes.js';
 
 const app = express();
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
 const configuredClientOrigin =
   process.env.CLIENT_URL || 'http://localhost:5173';
 const clientOriginUrl = new URL(configuredClientOrigin);
